@@ -2,7 +2,7 @@ name: Compile Binaries
 on:
   push:
     branches:
-      - master
+      - main
       - "release/**"
     tags-ignore:
       - '*'
