@@ -4,7 +4,7 @@ By participating in this project, you agree to abide our [code of conduct](/CODE
 
 ## Write Issue
 
-When you have a bug report or feature request or something, please create an issue from [here](https://github.com/appkins/terraform-provider-docker/issues/new/choose).
+When you have a bug report or feature request or something, please create an issue from [here](https://github.com/kreuzwerker/terraform-provider-docker/issues/new/choose).
 Before creating an issue, please check whether same or related issues exist.
 Please use issue templates as much as possible.
 

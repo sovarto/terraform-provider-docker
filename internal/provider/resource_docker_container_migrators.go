@@ -949,7 +949,7 @@ func replaceLabelsMapFieldWithSetField(rawState map[string]interface{}) map[stri
 
 func migrateContainerLabels(rawState map[string]interface{}) map[string]interface{} {
 	if rawState == nil {
-		// https://github.com/appkins/terraform-provider-docker/issues/176
+		// https://github.com/kreuzwerker/terraform-provider-docker/issues/176
 		// to prevent error `assignment to entry in nil map`
 		rawState = map[string]interface{}{}
 	}

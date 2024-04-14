@@ -326,7 +326,7 @@ func TestAccDockerService_fullSpec(t *testing.T) {
 	// validates the inspected service json contains
 	// all attributes set in the terraform spec so all mappers and flatteners
 	// work as expected. This is to avoid bugs like
-	// https://github.com/appkins/terraform-provider-docker/issues/202
+	// https://github.com/kreuzwerker/terraform-provider-docker/issues/202
 	testCheckServiceInspect := func(*terraform.State) error {
 		if len(s.Spec.Labels) != 1 || !mapEquals("servicelabel", "true", s.Spec.Labels) {
 			return fmt.Errorf("Service Spec.Labels is wrong: %v", s.Spec.Labels)

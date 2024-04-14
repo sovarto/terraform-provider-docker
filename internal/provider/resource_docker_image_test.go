@@ -462,7 +462,7 @@ RUN echo ${test_arg} > test_arg.txt
 RUN apt-get update -qq
 `
 
-// Test for implementation of https://github.com/appkins/terraform-provider-docker/issues/401
+// Test for implementation of https://github.com/kreuzwerker/terraform-provider-docker/issues/401
 func TestAccDockerImage_buildOutsideContext(t *testing.T) {
 	ctx := context.Background()
 	wd, _ := os.Getwd()
@@ -506,7 +506,7 @@ func TestAccDockerImageResource_build(t *testing.T) {
 	})
 }
 
-// Test for https://github.com/appkins/terraform-provider-docker/issues/249
+// Test for https://github.com/kreuzwerker/terraform-provider-docker/issues/249
 func TestAccDockerImageResource_whitelistDockerignore(t *testing.T) {
 	name := "tftest-dockerregistryimage-whitelistdockerignore:1.0"
 	wd, _ := os.Getwd()
@@ -525,7 +525,7 @@ func TestAccDockerImageResource_whitelistDockerignore(t *testing.T) {
 	})
 }
 
-// Tests for issue https://github.com/appkins/terraform-provider-docker/issues/293
+// Tests for issue https://github.com/kreuzwerker/terraform-provider-docker/issues/293
 // First we check if we can build the docker_registry_image resource at all
 // TODO in a second step we want to check whether the file has the correct permissions
 func TestAccDockerImageResource_correctFilePermissions(t *testing.T) {
