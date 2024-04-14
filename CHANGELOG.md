@@ -1,3 +1,9 @@
+<a name="v3.0.3"></a>
+## [v3.0.3](https://github.com/appkins-org/terraform-provider-docker/compare/v3.0.2...v3.0.3) (2024-04-14)
+
+### Feat
+
+* add `capabilities` to `docker_service` resource
 
 <a name="v3.0.2"></a>
 ## [v3.0.2](https://github.com/appkins-org/terraform-provider-docker/compare/v3.0.1...v3.0.2) (2023-03-17)
