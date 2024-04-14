@@ -326,7 +326,7 @@ func TestAccDockerService_fullSpec(t *testing.T) {
 	// validates the inspected service json contains
 	// all attributes set in the terraform spec so all mappers and flatteners
 	// work as expected. This is to avoid bugs like
-	// https://github.com/kreuzwerker/terraform-provider-docker/issues/202
+	// https://github.com/appkins-org/terraform-provider-docker/issues/202
 	testCheckServiceInspect := func(*terraform.State) error {
 		if len(s.Spec.Labels) != 1 || !mapEquals("servicelabel", "true", s.Spec.Labels) {
 			return fmt.Errorf("Service Spec.Labels is wrong: %v", s.Spec.Labels)
@@ -1036,7 +1036,7 @@ func TestAccDockerService_updateMultiplePropertiesConverge(t *testing.T) {
 			testAccPreCheck(t)
 			// Note mavogel: we download all images upfront and use a data_source then
 			// becausee the test is only flaky in CI. See
-			// https://github.com/kreuzwerker/terraform-provider-docker/runs/2732063570
+			// https://github.com/appkins-org/terraform-provider-docker/runs/2732063570
 			pullImageForTest(t, image)
 			pullImageForTest(t, image2)
 			pullImageForTest(t, image3)

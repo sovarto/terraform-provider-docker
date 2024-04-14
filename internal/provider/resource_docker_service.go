@@ -128,6 +128,35 @@ func resourceDockerService() *schema.Resource {
 										Optional:    true,
 										Elem:        &schema.Schema{Type: schema.TypeString},
 									},
+									"capabilities": {
+										Type:        schema.TypeSet,
+										Description: "Add or drop certrain linux capabilities.",
+										Optional:    true,
+										ForceNew:    true,
+										MaxItems:    1,
+										// TODO implement DiffSuppressFunc
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"add": {
+													Type:        schema.TypeSet,
+													Description: "List of linux capabilities to add.",
+													Optional:    true,
+													ForceNew:    true,
+													Elem:        &schema.Schema{Type: schema.TypeString},
+													Set:         schema.HashString,
+												},
+						
+												"drop": {
+													Type:        schema.TypeSet,
+													Description: "List of linux capabilities to drop.",
+													Optional:    true,
+													ForceNew:    true,
+													Elem:        &schema.Schema{Type: schema.TypeString},
+													Set:         schema.HashString,
+												},
+											},
+										},
+									},
 									"privileges": {
 										Type:        schema.TypeList,
 										Description: "Security options for the container",

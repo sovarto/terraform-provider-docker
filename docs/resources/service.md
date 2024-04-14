@@ -361,6 +361,7 @@ Required:
 Optional:
 
 - `args` (List of String) Arguments to the command
+- `capabilities` (Block Set, Max: 1) Add or drop certrain linux capabilities. (see [below for nested schema](#nestedblock--task_spec--container_spec--capabilities))
 - `command` (List of String) The command/entrypoint to be run in the image. According to the [docker cli](https://github.com/docker/cli/blob/v20.10.7/cli/command/service/opts.go#L705) the override of the entrypoint is also passed to the `command` property and there is no `entrypoint` attribute in the `ContainerSpec` of the service.
 - `configs` (Block Set) References to zero or more configs that will be exposed to the service (see [below for nested schema](#nestedblock--task_spec--container_spec--configs))
 - `dir` (String) The working directory for commands to run in
@@ -380,6 +381,15 @@ Optional:
 - `stop_signal` (String) Signal to stop the container
 - `sysctl` (Map of String) Sysctls config (Linux only)
 - `user` (String) The user inside the container
+
+<a id="nestedblock--task_spec--container_spec--capabilities"></a>
+### Nested Schema for `task_spec.container_spec.capabilities`
+
+Optional:
+
+- `add` (Set of String) List of linux capabilities to add.
+- `drop` (Set of String) List of linux capabilities to drop.
+
 
 <a id="nestedblock--task_spec--container_spec--configs"></a>
 ### Nested Schema for `task_spec.container_spec.configs`

@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source  = "appkins-org/docker"
       version = "3.0.2"
     }
   }

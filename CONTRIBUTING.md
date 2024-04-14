@@ -4,7 +4,7 @@ By participating in this project, you agree to abide our [code of conduct](/CODE
 
 ## Write Issue
 
-When you have a bug report or feature request or something, please create an issue from [here](https://github.com/kreuzwerker/terraform-provider-docker/issues/new/choose).
+When you have a bug report or feature request or something, please create an issue from [here](https://github.com/appkins-org/terraform-provider-docker/issues/new/choose).
 Before creating an issue, please check whether same or related issues exist.
 Please use issue templates as much as possible.
 
@@ -34,7 +34,7 @@ Prerequisites:
 Clone `terraform-provider-docker` anywhere:
 
 ```sh
-git clone git@github.com:kreuzwerker/terraform-provider-docker.git
+git clone git@github.com:appkins-org/terraform-provider-docker.git
 ```
 
 Install the build dependencies, tools and commit message validation:
@@ -118,7 +118,7 @@ In order to extend the provider and test it with `terraform`, build the provider
 ```sh
 # Testing in a local mirror which needs to have the following convention.
 # See https://www.terraform.io/docs/commands/cli-config.html#provider-installation for details
-export TESTING_MIRROR=testing-mirror/registry.terraform.io/kreuzwerker/docker/9.9.9/$(go env GOHOSTOS)_$(go env GOHOSTARCH)
+export TESTING_MIRROR=testing-mirror/registry.terraform.io/appkins-org/docker/9.9.9/$(go env GOHOSTOS)_$(go env GOHOSTARCH)
 mkdir -p ./$TESTING_MIRROR
 
 # now we build into the provider into the local mirror
@@ -130,7 +130,7 @@ Now we change into the `testing` directory (which is ignored as well) and set an
 terraform {
   required_providers {
     docker = {
-      source  = "kreuzwerker/docker"
+      source  = "appkins-org/docker"
       version = "9.9.9"
     }
   }

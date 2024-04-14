@@ -141,6 +141,18 @@ func flattenContainerSpec(in *swarm.ContainerSpec) []interface{} {
 	if len(in.Groups) > 0 {
 		m["groups"] = in.Groups
 	}
+	if len(in.CapabilityAdd) > 0 || len(in.CapabilityDrop) > 0 {
+		capabilities := make([]interface{}, 1)
+		capabilitiesMap := make(map[string]interface{})
+		if len(in.CapabilityAdd) > 0 {
+			capabilitiesMap["add"] = in.CapabilityAdd
+		}
+		if len(in.CapabilityDrop) > 0 {
+			capabilitiesMap["drop"] = in.CapabilityDrop
+		}
+		capabilities[0] = capabilitiesMap
+		m["capabilities"] = capabilities
+	}
 	if in.Privileges != nil {
 		m["privileges"] = flattenPrivileges(in.Privileges)
 	}
@@ -718,6 +730,19 @@ func createContainerSpec(v interface{}) (*swarm.ContainerSpec, error) {
 			}
 			if value, ok := rawContainerSpec["groups"]; ok {
 				containerSpec.Groups = stringListToStringSlice(value.([]interface{}))
+			}
+			if value, ok := rawContainerSpec["capabilities"]; ok {
+				if len(value.([]interface{})) > 0 {
+					for _, rawCapabilitiesSpec := range value.([]interface{}) {
+						rawCapabilitiesSpec := rawCapabilitiesSpec.(map[string]interface{})
+						if value, ok := rawCapabilitiesSpec["add"]; ok {
+							containerSpec.CapabilityAdd = stringListToStringSlice(value.([]interface{}))
+						}
+						if value, ok := rawCapabilitiesSpec["drop"]; ok {
+							containerSpec.CapabilityDrop = stringListToStringSlice(value.([]interface{}))
+						}
+					}
+				}
 			}
 			if value, ok := rawContainerSpec["privileges"]; ok {
 				if len(value.([]interface{})) > 0 {
@@ -1375,7 +1400,7 @@ func extraHostsSetToServiceExtraHosts(extraHosts *schema.Set) []string {
 		ip := host["ip"].(string)
 		hostname := host["host"].(string)
 		// the delimiter is a 'space' + hostname and ip are switched
-		// see https://github.com/kreuzwerker/terraform-provider-docker/issues/202#issuecomment-847715879
+		// see https://github.com/appkins-org/terraform-provider-docker/issues/202#issuecomment-847715879
 		retExtraHosts = append(retExtraHosts, ip+" "+hostname)
 	}
 
