@@ -135,7 +135,7 @@ func New(version string) func() *schema.Provider {
 								Type:        schema.TypeBool,
 								Optional:    true,
 								Default:     false,
-								Description: "Setting this to `true` will tell the provider that this registry does not need authentication. Due to the docker internals, the provider will use dummy credentials (see https://github.com/appkins-org/terraform-provider-docker/issues/470 for more information). Defaults to `false`.",
+								Description: "Setting this to `true` will tell the provider that this registry does not need authentication. Due to the docker internals, the provider will use dummy credentials (see https://github.com/appkins/terraform-provider-docker/issues/470 for more information). Defaults to `false`.",
 							},
 						},
 					},
@@ -236,7 +236,7 @@ func providerSetToRegistryAuth(authList *schema.Set) (*AuthConfigs, error) {
 		password := auth.(map[string]interface{})["password"].(string)
 
 		// If auth is disabled, set the auth config to any user/password combination
-		// See https://github.com/appkins-org/terraform-provider-docker/issues/470 for more information
+		// See https://github.com/appkins/terraform-provider-docker/issues/470 for more information
 		if auth.(map[string]interface{})["auth_disabled"].(bool) {
 			log.Printf("[DEBUG] Auth disabled for registry %s", registryHostname)
 			username = "username"

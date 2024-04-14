@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 
-	"github.com/appkins-org/terraform-provider-docker/internal/provider"
+	"github.com/appkins/terraform-provider-docker/internal/provider"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 )
 
@@ -35,7 +35,7 @@ func main() {
 	opts := &plugin.ServeOpts{ProviderFunc: provider.New(version)}
 
 	if debugMode {
-		debugOpts := &plugin.ServeOpts{ProviderFunc: provider.New(version), ProviderAddr: "registry.terraform.io/appkins-org/docker", Debug: true}
+		debugOpts := &plugin.ServeOpts{ProviderFunc: provider.New(version), ProviderAddr: "registry.terraform.io/appkins/docker", Debug: true}
 		plugin.Serve(debugOpts)
 		return
 	}

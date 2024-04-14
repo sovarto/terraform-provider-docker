@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "appkins-org/docker"
+      source  = "appkins/docker"
       version = "3.0.2"
     }
   }

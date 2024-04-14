@@ -1400,7 +1400,7 @@ func extraHostsSetToServiceExtraHosts(extraHosts *schema.Set) []string {
 		ip := host["ip"].(string)
 		hostname := host["host"].(string)
 		// the delimiter is a 'space' + hostname and ip are switched
-		// see https://github.com/appkins-org/terraform-provider-docker/issues/202#issuecomment-847715879
+		// see https://github.com/appkins/terraform-provider-docker/issues/202#issuecomment-847715879
 		retExtraHosts = append(retExtraHosts, ip+" "+hostname)
 	}
 

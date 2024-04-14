@@ -40,7 +40,7 @@ dist
 
 # testing
 /testing
-/testing-mirror/registry.terraform.io/appkins-org/docker
+/testing-mirror/registry.terraform.io/appkins/docker
 
 # lint error outputs
 markdown-link-check-*.txt
