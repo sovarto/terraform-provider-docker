@@ -142,16 +142,12 @@ func flattenContainerSpec(in *swarm.ContainerSpec) []interface{} {
 		m["groups"] = in.Groups
 	}
 	if len(in.CapabilityAdd) > 0 || len(in.CapabilityDrop) > 0 {
-		capabilities := make([]interface{}, 1)
-		capabilitiesMap := make(map[string]interface{})
-		if len(in.CapabilityAdd) > 0 {
-			capabilitiesMap["add"] = in.CapabilityAdd
+		m["capabilities"] = []interface{}{
+			map[string]interface{}{
+				"add":  in.CapabilityAdd,
+				"drop": in.CapabilityDrop,
+			},
 		}
-		if len(in.CapabilityDrop) > 0 {
-			capabilitiesMap["drop"] = in.CapabilityDrop
-		}
-		capabilities[0] = capabilitiesMap
-		m["capabilities"] = capabilities
 	}
 	if in.Privileges != nil {
 		m["privileges"] = flattenPrivileges(in.Privileges)
@@ -731,17 +727,12 @@ func createContainerSpec(v interface{}) (*swarm.ContainerSpec, error) {
 			if value, ok := rawContainerSpec["groups"]; ok {
 				containerSpec.Groups = stringListToStringSlice(value.([]interface{}))
 			}
-			if value, ok := rawContainerSpec["capabilities"]; ok {
-				if len(value.([]interface{})) > 0 {
-					for _, rawCapabilitiesSpec := range value.([]interface{}) {
-						rawCapabilitiesSpec := rawCapabilitiesSpec.(map[string]interface{})
-						if value, ok := rawCapabilitiesSpec["add"]; ok {
-							containerSpec.CapabilityAdd = stringListToStringSlice(value.([]interface{}))
-						}
-						if value, ok := rawCapabilitiesSpec["drop"]; ok {
-							containerSpec.CapabilityDrop = stringListToStringSlice(value.([]interface{}))
-						}
-					}
+			if v, ok := rawContainerSpec["capabilities"]; ok {
+				for _, capInt := range v.(*schema.Set).List() {
+					capa := capInt.(map[string]interface{})
+					containerSpec.CapabilityAdd = stringSetToStringSlice(capa["add"].(*schema.Set))
+					containerSpec.CapabilityDrop = stringSetToStringSlice(capa["drop"].(*schema.Set))
+					break
 				}
 			}
 			if value, ok := rawContainerSpec["privileges"]; ok {

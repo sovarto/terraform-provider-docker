@@ -148,6 +148,31 @@ func resourceDockerServiceV1() *schema.Resource {
 										Optional:    true,
 										Elem:        &schema.Schema{Type: schema.TypeString},
 									},
+									"capabilities": {
+										Type:     schema.TypeSet,
+										Optional: true,
+										ForceNew: true,
+										MaxItems: 1,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"add": {
+													Type:     schema.TypeSet,
+													Optional: true,
+													ForceNew: true,
+													Elem:     &schema.Schema{Type: schema.TypeString},
+													Set:      schema.HashString,
+												},
+
+												"drop": {
+													Type:     schema.TypeSet,
+													Optional: true,
+													ForceNew: true,
+													Elem:     &schema.Schema{Type: schema.TypeString},
+													Set:      schema.HashString,
+												},
+											},
+										},
+									},
 									"privileges": {
 										Type:        schema.TypeList,
 										Description: "Security options for the container",

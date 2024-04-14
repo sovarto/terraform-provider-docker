@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 
-	"github.com/appkins/terraform-provider-docker/internal/provider"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
+	"github.com/terraform-providers/terraform-provider-docker/internal/provider"
 )
 
 // Run "go generate" to format example terraform files and generate the docs for the registry/website
