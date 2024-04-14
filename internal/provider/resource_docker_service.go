@@ -145,7 +145,7 @@ func resourceDockerService() *schema.Resource {
 													Elem:        &schema.Schema{Type: schema.TypeString},
 													Set:         schema.HashString,
 												},
-						
+
 												"drop": {
 													Type:        schema.TypeSet,
 													Description: "List of linux capabilities to drop.",

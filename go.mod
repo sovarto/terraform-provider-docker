@@ -1,4 +1,4 @@
-module github.com/terraform-providers/terraform-provider-docker
+module github.com/appkins-org/terraform-provider-docker
 
 go 1.18
 
