@@ -48,8 +48,8 @@ jobs:
           - resource_type: TestAccDockerService
             registry: true
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: ${{ env.GO_VERSION }}
       - name: Setup cookies
@@ -59,7 +59,7 @@ jobs:
       - name: Used docker version
         run: |
           docker version
-      - uses: hashicorp/setup-terraform@v2
+      - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ matrix.terraform_version }}
           terraform_wrapper: false
