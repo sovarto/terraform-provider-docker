@@ -4,6 +4,23 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
+var serviceLabelSchema = &schema.Resource{
+	Schema: map[string]*schema.Schema{
+		"label": {
+			Type:        schema.TypeString,
+			Description: "Name of the label",
+			Required:    true,
+			ForceNew:    false,
+		},
+		"value": {
+			Type:        schema.TypeString,
+			Description: "Value of the label",
+			Required:    true,
+			ForceNew:    false,
+		},
+	},
+}
+
 // resourceDockerService create a docker service
 // https://docs.docker.com/engine/api/v1.32/#operation/ServiceCreate
 func resourceDockerService() *schema.Resource {
@@ -62,7 +79,7 @@ func resourceDockerService() *schema.Resource {
 				Description: "User-defined key/value metadata",
 				Optional:    true,
 				Computed:    true,
-				Elem:        labelSchema,
+				Elem:        serviceLabelSchema,
 			},
 			"task_spec": {
 				Type:        schema.TypeList,
@@ -87,7 +104,7 @@ func resourceDockerService() *schema.Resource {
 										Type:        schema.TypeSet,
 										Description: "User-defined key/value metadata",
 										Optional:    true,
-										Elem:        labelSchema,
+										Elem:        serviceLabelSchema,
 									},
 									"command": {
 										Type:        schema.TypeList,
@@ -287,7 +304,7 @@ func resourceDockerService() *schema.Resource {
 																Type:        schema.TypeSet,
 																Description: "User-defined key/value metadata",
 																Optional:    true,
-																Elem:        labelSchema,
+																Elem:        serviceLabelSchema,
 															},
 															"driver_name": {
 																Type:        schema.TypeString,
