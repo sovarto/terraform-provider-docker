@@ -22,8 +22,6 @@
 
 The documentation for the provider is available on the [Terraform Registry](https://registry.terraform.io/providers/sovarto/docker/latest/docs).
 
-Do you want to migrate from `v2.x` to `v3.x`? Please read the [migration guide](docs/v2_v3_migration.md)
-
 ## Example usage
 
 Take a look at the examples in the [documentation](https://registry.terraform.io/providers/sovarto/docker/3.0.2/docs) of the registry
@@ -38,7 +36,7 @@ terraform {
     # since new versions are released frequently
     docker = {
       source  = "sovarto/docker"
-      version = "3.0.2"
+      version = "3.0.5"
     }
   }
 }

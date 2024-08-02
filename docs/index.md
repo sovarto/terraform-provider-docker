@@ -18,40 +18,18 @@ Use the navigation to the left to read about the available resources.
 
 ## Example Usage
 
-Terraform 0.13 and later:
-
 ```terraform
 terraform {
   required_providers {
     docker = {
       source  = "sovarto/docker"
-      version = "3.0.2"
+      version = "3.0.5"
     }
   }
 }
 
 provider "docker" {
   host = "unix:///var/run/docker.sock"
-}
-
-# Pulls the image
-resource "docker_image" "ubuntu" {
-  name = "ubuntu:latest"
-}
-
-# Create a container
-resource "docker_container" "foo" {
-  image = docker_image.ubuntu.image_id
-  name  = "foo"
-}
-```
-
-Terraform 0.12 and earlier:
-
-```terraform
-provider "docker" {
-  version = "~> 3.0.2"
-  host    = "unix:///var/run/docker.sock"
 }
 
 # Pulls the image
