@@ -34,7 +34,7 @@ Prerequisites:
 Clone `terraform-provider-docker` anywhere:
 
 ```sh
-git clone git@github.com:appkins/terraform-provider-docker.git
+git clone git@github.com:sovarto/terraform-provider-docker.git
 ```
 
 Install the build dependencies, tools and commit message validation:
@@ -118,7 +118,7 @@ In order to extend the provider and test it with `terraform`, build the provider
 ```sh
 # Testing in a local mirror which needs to have the following convention.
 # See https://www.terraform.io/docs/commands/cli-config.html#provider-installation for details
-export TESTING_MIRROR=testing-mirror/registry.terraform.io/appkins/docker/9.9.9/$(go env GOHOSTOS)_$(go env GOHOSTARCH)
+export TESTING_MIRROR=testing-mirror/registry.terraform.io/sovarto/docker/9.9.9/$(go env GOHOSTOS)_$(go env GOHOSTARCH)
 mkdir -p ./$TESTING_MIRROR
 
 # now we build into the provider into the local mirror
@@ -130,7 +130,7 @@ Now we change into the `testing` directory (which is ignored as well) and set an
 terraform {
   required_providers {
     docker = {
-      source  = "appkins/docker"
+      source  = "sovarto/docker"
       version = "9.9.9"
     }
   }

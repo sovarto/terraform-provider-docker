@@ -63,7 +63,7 @@ func dataSourceDockerImageRead(ctx context.Context, d *schema.ResourceData, meta
 
 // determineRepoDigest determines the repo digest for a local image name.
 // It will always return a digest and if none was found it returns an empty string.
-// See https://github.com/appkins/terraform-provider-docker/pull/212#discussion_r646025706 for details
+// See https://github.com/sovarto/terraform-provider-docker/pull/212#discussion_r646025706 for details
 func determineRepoDigest(imageName string, imageToQuery *types.ImageSummary) string {
 	// the edge case where the local image was pulled from a repo, tagged locally,
 	// and then referred to in the data source by that local name/tag...

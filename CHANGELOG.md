@@ -1,12 +1,12 @@
 <a name="v3.0.3"></a>
-## [v3.0.3](https://github.com/appkins/terraform-provider-docker/compare/v3.0.2...v3.0.3) (2024-04-14)
+## [v3.0.3](https://github.com/sovarto/terraform-provider-docker/compare/v3.0.2...v3.0.3) (2024-04-14)
 
 ### Feat
 
 * add `capabilities` to `docker_service` resource
 
 <a name="v3.0.2"></a>
-## [v3.0.2](https://github.com/appkins/terraform-provider-docker/compare/v3.0.1...v3.0.2) (2023-03-17)
+## [v3.0.2](https://github.com/sovarto/terraform-provider-docker/compare/v3.0.1...v3.0.2) (2023-03-17)
 
 ### Docs
 
@@ -18,7 +18,7 @@
 
 
 <a name="v3.0.1"></a>
-## [v3.0.1](https://github.com/appkins/terraform-provider-docker/compare/v3.0.0...v3.0.1) (2023-01-13)
+## [v3.0.1](https://github.com/sovarto/terraform-provider-docker/compare/v3.0.0...v3.0.1) (2023-01-13)
 
 ### Chore
 
@@ -30,7 +30,7 @@
 
 
 <a name="v3.0.0"></a>
-## [v3.0.0](https://github.com/appkins/terraform-provider-docker/compare/v2.25.0...v3.0.0) (2023-01-13)
+## [v3.0.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.25.0...v3.0.0) (2023-01-13)
 
 ### Chore
 
@@ -47,7 +47,7 @@
 
 
 <a name="v2.25.0"></a>
-## [v2.25.0](https://github.com/appkins/terraform-provider-docker/compare/v2.24.0...v2.25.0) (2023-01-05)
+## [v2.25.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.24.0...v2.25.0) (2023-01-05)
 
 ### Chore
 
@@ -65,7 +65,7 @@
 
 
 <a name="v2.24.0"></a>
-## [v2.24.0](https://github.com/appkins/terraform-provider-docker/compare/v2.23.1...v2.24.0) (2022-12-23)
+## [v2.24.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.23.1...v2.24.0) (2022-12-23)
 
 ### Chore
 
@@ -93,7 +93,7 @@
 
 
 <a name="v2.23.1"></a>
-## [v2.23.1](https://github.com/appkins/terraform-provider-docker/compare/v2.23.0...v2.23.1) (2022-11-23)
+## [v2.23.1](https://github.com/sovarto/terraform-provider-docker/compare/v2.23.0...v2.23.1) (2022-11-23)
 
 ### Chore
 
@@ -107,7 +107,7 @@
 
 
 <a name="v2.23.0"></a>
-## [v2.23.0](https://github.com/appkins/terraform-provider-docker/compare/v2.22.0...v2.23.0) (2022-11-02)
+## [v2.23.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.22.0...v2.23.0) (2022-11-02)
 
 ### Chore
 
@@ -126,7 +126,7 @@
 
 
 <a name="v2.22.0"></a>
-## [v2.22.0](https://github.com/appkins/terraform-provider-docker/compare/v2.21.0...v2.22.0) (2022-09-20)
+## [v2.22.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.21.0...v2.22.0) (2022-09-20)
 
 ### Chore
 
@@ -142,7 +142,7 @@
 
 
 <a name="v2.21.0"></a>
-## [v2.21.0](https://github.com/appkins/terraform-provider-docker/compare/v2.20.3...v2.21.0) (2022-09-05)
+## [v2.21.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.20.3...v2.21.0) (2022-09-05)
 
 ### Chore
 
@@ -165,7 +165,7 @@
 
 
 <a name="v2.20.3"></a>
-## [v2.20.3](https://github.com/appkins/terraform-provider-docker/compare/v2.20.2...v2.20.3) (2022-08-31)
+## [v2.20.3](https://github.com/sovarto/terraform-provider-docker/compare/v2.20.2...v2.20.3) (2022-08-31)
 
 ### Chore
 
@@ -178,7 +178,7 @@
 
 
 <a name="v2.20.2"></a>
-## [v2.20.2](https://github.com/appkins/terraform-provider-docker/compare/v2.20.1...v2.20.2) (2022-08-10)
+## [v2.20.2](https://github.com/sovarto/terraform-provider-docker/compare/v2.20.1...v2.20.2) (2022-08-10)
 
 ### Chore
 
@@ -194,7 +194,7 @@
 
 
 <a name="v2.20.1"></a>
-## [v2.20.1](https://github.com/appkins/terraform-provider-docker/compare/v2.20.0...v2.20.1) (2022-08-10)
+## [v2.20.1](https://github.com/sovarto/terraform-provider-docker/compare/v2.20.0...v2.20.1) (2022-08-10)
 
 ### Chore
 
@@ -215,7 +215,7 @@
 
 
 <a name="v2.20.0"></a>
-## [v2.20.0](https://github.com/appkins/terraform-provider-docker/compare/v2.19.0...v2.20.0) (2022-07-28)
+## [v2.20.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.19.0...v2.20.0) (2022-07-28)
 
 ### Chore
 
@@ -229,7 +229,7 @@
 
 
 <a name="v2.19.0"></a>
-## [v2.19.0](https://github.com/appkins/terraform-provider-docker/compare/v2.18.1...v2.19.0) (2022-07-15)
+## [v2.19.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.18.1...v2.19.0) (2022-07-15)
 
 ### Chore
 
@@ -246,7 +246,7 @@
 
 
 <a name="v2.18.1"></a>
-## [v2.18.1](https://github.com/appkins/terraform-provider-docker/compare/v2.18.0...v2.18.1) (2022-07-14)
+## [v2.18.1](https://github.com/sovarto/terraform-provider-docker/compare/v2.18.0...v2.18.1) (2022-07-14)
 
 ### Chore
 
@@ -261,7 +261,7 @@
 
 
 <a name="v2.18.0"></a>
-## [v2.18.0](https://github.com/appkins/terraform-provider-docker/compare/v2.17.0...v2.18.0) (2022-07-11)
+## [v2.18.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.17.0...v2.18.0) (2022-07-11)
 
 ### Chore
 
@@ -275,11 +275,11 @@
 
 * Correctly handle build files and context for docker_registry_image ([#398](https://github.com/kreuzwerker/terraform-provider-docker/issues/398))
 * Switch to proper go tools mechanism to fix website-* workflows. ([#399](https://github.com/kreuzwerker/terraform-provider-docker/issues/399))
-* compare relative paths when excluding, fixes appkins[#280](https://github.com/kreuzwerker/terraform-provider-docker/issues/280) ([#397](https://github.com/kreuzwerker/terraform-provider-docker/issues/397))
+* compare relative paths when excluding, fixes sovarto[#280](https://github.com/kreuzwerker/terraform-provider-docker/issues/280) ([#397](https://github.com/kreuzwerker/terraform-provider-docker/issues/397))
 
 
 <a name="v2.17.0"></a>
-## [v2.17.0](https://github.com/appkins/terraform-provider-docker/compare/v2.16.0...v2.17.0) (2022-06-23)
+## [v2.17.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.16.0...v2.17.0) (2022-06-23)
 
 ### Chore
 
@@ -294,7 +294,7 @@
 
 
 <a name="v2.16.0"></a>
-## [v2.16.0](https://github.com/appkins/terraform-provider-docker/compare/v2.15.0...v2.16.0) (2022-01-24)
+## [v2.16.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.15.0...v2.16.0) (2022-01-24)
 
 ### Chore
 
@@ -318,7 +318,7 @@
 
 
 <a name="v2.15.0"></a>
-## [v2.15.0](https://github.com/appkins/terraform-provider-docker/compare/v2.14.0...v2.15.0) (2021-08-11)
+## [v2.15.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.14.0...v2.15.0) (2021-08-11)
 
 ### Chore
 
@@ -339,7 +339,7 @@
 
 
 <a name="v2.14.0"></a>
-## [v2.14.0](https://github.com/appkins/terraform-provider-docker/compare/v2.13.0...v2.14.0) (2021-07-09)
+## [v2.14.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.13.0...v2.14.0) (2021-07-09)
 
 ### Chore
 
@@ -360,7 +360,7 @@
 
 
 <a name="v2.13.0"></a>
-## [v2.13.0](https://github.com/appkins/terraform-provider-docker/compare/v2.12.2...v2.13.0) (2021-06-22)
+## [v2.13.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.12.2...v2.13.0) (2021-06-22)
 
 ### Chore
 
@@ -373,7 +373,7 @@
 
 
 <a name="v2.12.2"></a>
-## [v2.12.2](https://github.com/appkins/terraform-provider-docker/compare/v2.12.1...v2.12.2) (2021-05-26)
+## [v2.12.2](https://github.com/sovarto/terraform-provider-docker/compare/v2.12.1...v2.12.2) (2021-05-26)
 
 ### Chore
 
@@ -381,7 +381,7 @@
 
 
 <a name="v2.12.1"></a>
-## [v2.12.1](https://github.com/appkins/terraform-provider-docker/compare/v2.12.0...v2.12.1) (2021-05-26)
+## [v2.12.1](https://github.com/sovarto/terraform-provider-docker/compare/v2.12.0...v2.12.1) (2021-05-26)
 
 ### Chore
 
@@ -394,7 +394,7 @@
 
 
 <a name="v2.12.0"></a>
-## [v2.12.0](https://github.com/appkins/terraform-provider-docker/compare/v2.11.0...v2.12.0) (2021-05-23)
+## [v2.12.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.11.0...v2.12.0) (2021-05-23)
 
 ### Chore
 
@@ -434,7 +434,7 @@
 
 
 <a name="v2.11.0"></a>
-## [v2.11.0](https://github.com/appkins/terraform-provider-docker/compare/v2.10.0...v2.11.0) (2021-01-22)
+## [v2.11.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.10.0...v2.11.0) (2021-01-22)
 
 ### Chore
 
@@ -451,7 +451,7 @@
 
 
 <a name="v2.10.0"></a>
-## [v2.10.0](https://github.com/appkins/terraform-provider-docker/compare/v2.9.0...v2.10.0) (2021-01-08)
+## [v2.10.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.9.0...v2.10.0) (2021-01-08)
 
 ### Chore
 
@@ -486,12 +486,12 @@
 
 ### Pull Requests
 
-* Merge pull request [#38](https://github.com/kreuzwerker/terraform-provider-docker/issues/38) from appkins/ci-ubuntu2004-workflow
-* Merge pull request [#36](https://github.com/kreuzwerker/terraform-provider-docker/issues/36) from appkins/chore-gh-issue-tpl
+* Merge pull request [#38](https://github.com/kreuzwerker/terraform-provider-docker/issues/38) from sovarto/ci-ubuntu2004-workflow
+* Merge pull request [#36](https://github.com/kreuzwerker/terraform-provider-docker/issues/36) from sovarto/chore-gh-issue-tpl
 
 
 <a name="v2.9.0"></a>
-## [v2.9.0](https://github.com/appkins/terraform-provider-docker/compare/v2.8.0...v2.9.0) (2020-12-25)
+## [v2.9.0](https://github.com/sovarto/terraform-provider-docker/compare/v2.8.0...v2.9.0) (2020-12-25)
 
 ### Chore
 
@@ -531,7 +531,7 @@
 
 * Merge pull request [#33](https://github.com/kreuzwerker/terraform-provider-docker/issues/33) from brandonros/patch-1
 * Merge pull request [#11](https://github.com/kreuzwerker/terraform-provider-docker/issues/11) from suzuki-shunsuke/format-with-gofumpt
-* Merge pull request [#26](https://github.com/kreuzwerker/terraform-provider-docker/issues/26) from appkins/ci/fix-website-ci
+* Merge pull request [#26](https://github.com/kreuzwerker/terraform-provider-docker/issues/26) from sovarto/ci/fix-website-ci
 * Merge pull request [#8](https://github.com/kreuzwerker/terraform-provider-docker/issues/8) from dubo-dubon-duponey/patch1
 
 

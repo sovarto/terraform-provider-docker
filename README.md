@@ -1,32 +1,32 @@
 <a href="https://docker.com">
-    <img src="https://raw.githubusercontent.com/appkins/terraform-provider-docker/master/assets/docker-logo.png" alt="Docker logo" title="Docker" align="right" height="100" />
+    <img src="https://raw.githubusercontent.com/sovarto/terraform-provider-docker/master/assets/docker-logo.png" alt="Docker logo" title="Docker" align="right" height="100" />
 </a>
 <a href="https://terraform.io">
-    <img src="https://raw.githubusercontent.com/appkins/terraform-provider-docker/master/assets/terraform-logo.png" alt="Terraform logo" title="Terraform" align="right" height="100" />
+    <img src="https://raw.githubusercontent.com/sovarto/terraform-provider-docker/master/assets/terraform-logo.png" alt="Terraform logo" title="Terraform" align="right" height="100" />
 </a>
-<a href="https://appkins.de">
-    <img src="https://raw.githubusercontent.com/appkins/terraform-provider-docker/master/assets/xw-logo.png" alt="Kreuzwerker logo" title="Kreuzwerker" align="right" height="100" />
+<a href="https://sovarto.com">
+    <img src="https://sovarto.com/images/logo-white-text.ca82904b5a5293c5f25bb9bf62d2b24c.svg" alt="Sovarto logo" title="Sovarto" align="right" height="100" />
 </a>
 
 # Terraform Provider for Docker
 
-[![Release](https://img.shields.io/github/v/release/appkins/terraform-provider-docker)](https://github.com/appkins/terraform-provider-docker/releases)
-[![Installs](https://img.shields.io/badge/dynamic/json?logo=terraform&label=installs&query=$.data.attributes.downloads&url=https%3A%2F%2Fregistry.terraform.io%2Fv2%2Fproviders%2F713)](https://registry.terraform.io/providers/appkins/docker)
-[![Registry](https://img.shields.io/badge/registry-doc%40latest-lightgrey?logo=terraform)](https://registry.terraform.io/providers/appkins/docker/latest/docs)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/appkins/terraform-provider-docker/blob/main/LICENSE)  
-[![Go Status](https://github.com/appkins/terraform-provider-docker/workflows/Acc%20Tests/badge.svg)](https://github.com/appkins/terraform-provider-docker/actions)
-[![Lint Status](https://github.com/appkins/terraform-provider-docker/workflows/golangci-lint/badge.svg)](https://github.com/appkins/terraform-provider-docker/actions)
-[![Go Report Card](https://goreportcard.com/badge/github.com/appkins/terraform-provider-docker)](https://goreportcard.com/report/github.com/appkins/terraform-provider-docker)  
+[![Release](https://img.shields.io/github/v/release/sovarto/terraform-provider-docker)](https://github.com/sovarto/terraform-provider-docker/releases)
+[![Installs](https://img.shields.io/badge/dynamic/json?logo=terraform&label=installs&query=$.data.attributes.downloads&url=https%3A%2F%2Fregistry.terraform.io%2Fv2%2Fproviders%2F713)](https://registry.terraform.io/providers/sovarto/docker)
+[![Registry](https://img.shields.io/badge/registry-doc%40latest-lightgrey?logo=terraform)](https://registry.terraform.io/providers/sovarto/docker/latest/docs)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sovarto/terraform-provider-docker/blob/main/LICENSE)  
+[![Go Status](https://github.com/sovarto/terraform-provider-docker/workflows/Acc%20Tests/badge.svg)](https://github.com/sovarto/terraform-provider-docker/actions)
+[![Lint Status](https://github.com/sovarto/terraform-provider-docker/workflows/golangci-lint/badge.svg)](https://github.com/sovarto/terraform-provider-docker/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/sovarto/terraform-provider-docker)](https://goreportcard.com/report/github.com/sovarto/terraform-provider-docker)  
 
 ## Documentation
 
-The documentation for the provider is available on the [Terraform Registry](https://registry.terraform.io/providers/appkins/docker/latest/docs).
+The documentation for the provider is available on the [Terraform Registry](https://registry.terraform.io/providers/sovarto/docker/latest/docs).
 
 Do you want to migrate from `v2.x` to `v3.x`? Please read the [migration guide](docs/v2_v3_migration.md)
 
 ## Example usage
 
-Take a look at the examples in the [documentation](https://registry.terraform.io/providers/appkins/docker/3.0.2/docs) of the registry
+Take a look at the examples in the [documentation](https://registry.terraform.io/providers/sovarto/docker/3.0.2/docs) of the registry
 or use the following example:
 
 
@@ -37,7 +37,7 @@ terraform {
     # We recommend pinning to the specific version of the Docker Provider you're using
     # since new versions are released frequently
     docker = {
-      source  = "appkins/docker"
+      source  = "sovarto/docker"
       version = "3.0.2"
     }
   }
@@ -97,7 +97,7 @@ resource "docker_service" "nginx_service" {
 
 
 ```sh
-$ git clone git@github.com:appkins/terraform-provider-docker
+$ git clone git@github.com:sovarto/terraform-provider-docker
 $ make build
 ```
 
@@ -114,4 +114,4 @@ The Terraform Provider Docker is available to everyone under the terms of the Mo
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/appkins/terraform-provider-docker.svg)](https://starchart.cc/appkins/terraform-provider-docker)
+[![Stargazers over time](https://starchart.cc/sovarto/terraform-provider-docker.svg)](https://starchart.cc/sovarto/terraform-provider-docker)

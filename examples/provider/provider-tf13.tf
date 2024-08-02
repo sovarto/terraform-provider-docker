@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     docker = {
-      source  = "appkins/docker"
+      source  = "sovarto/docker"
       version = "3.0.2"
     }
   }

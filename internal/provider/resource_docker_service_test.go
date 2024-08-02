@@ -1036,7 +1036,7 @@ func TestAccDockerService_updateMultiplePropertiesConverge(t *testing.T) {
 			testAccPreCheck(t)
 			// Note mavogel: we download all images upfront and use a data_source then
 			// becausee the test is only flaky in CI. See
-			// https://github.com/appkins/terraform-provider-docker/runs/2732063570
+			// https://github.com/sovarto/terraform-provider-docker/runs/2732063570
 			pullImageForTest(t, image)
 			pullImageForTest(t, image2)
 			pullImageForTest(t, image3)

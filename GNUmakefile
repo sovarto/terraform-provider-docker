@@ -6,7 +6,7 @@ GOLANGCI_VERSION = 1.49.0
 
 # Values to install the provider locally for testing purposes
 HOSTNAME=registry.terraform.io
-NAMESPACE=appkins
+NAMESPACE=sovarto
 NAME=docker
 BINARY=terraform-provider-${NAME}
 VERSION=9.9.9
@@ -79,7 +79,7 @@ test-compile:
 
 website-generation:
 	go generate
-	
+
 website-link-check:
 	@scripts/markdown-link-check.sh
 
