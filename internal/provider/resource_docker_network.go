@@ -53,11 +53,12 @@ func resourceDockerNetwork() *schema.Resource {
 			},
 
 			"options": {
-				Type:        schema.TypeMap,
-				Description: "Only available with bridge networks. See [bridge options docs](https://docs.docker.com/engine/reference/commandline/network_create/#bridge-driver-options) for more details.",
-				Optional:    true,
-				ForceNew:    true,
-				Computed:    true,
+				Type:             schema.TypeMap,
+				Description:      "Only available with bridge networks. See [bridge options docs](https://docs.docker.com/engine/reference/commandline/network_create/#bridge-driver-options) for more details.",
+				Optional:         true,
+				ForceNew:         true,
+				Computed:         true,
+				DiffSuppressFunc: suppressIfOverlayAndVxlanIdExists(),
 			},
 
 			"internal": {
@@ -159,6 +160,40 @@ func resourceDockerNetwork() *schema.Resource {
 				},
 			},
 		},
+	}
+}
+
+func suppressIfOverlayAndVxlanIdExists() schema.SchemaDiffSuppressFunc {
+	return func(k, old, new string, d *schema.ResourceData) bool {
+		networkType, ok := d.GetOk("driver")
+		if !ok || networkType != "overlay" {
+			return false
+		}
+
+		if !d.HasChange("options") {
+			return false
+		}
+
+		oldOptions, newOptions := d.GetChange("options")
+
+		oldOptionsMap := oldOptions.(map[string]interface{})
+		newOptionsMap := newOptions.(map[string]interface{})
+
+		if len(oldOptionsMap) != len(newOptionsMap)+1 {
+			return false
+		}
+
+		for key, oldVal := range newOptionsMap {
+			if newVal, exists := oldOptionsMap[key]; !exists || newVal != oldVal {
+				return false
+			}
+		}
+
+		if _, exists := oldOptionsMap["com.docker.network.driver.overlay.vxlanid_list"]; !exists {
+			return false
+		}
+
+		return true
 	}
 }
 
