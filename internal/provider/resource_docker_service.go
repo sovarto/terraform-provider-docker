@@ -2,6 +2,8 @@ package provider
 
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"log"
+	"strings"
 )
 
 var serviceLabelSchema = &schema.Resource{
@@ -96,9 +98,10 @@ func resourceDockerService() *schema.Resource {
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"image": {
-										Type:        schema.TypeString,
-										Description: "The image name to use for the containers of the service, like `nginx:1.17.6`. Also use the data-source or resource of `docker_image` with the `repo_digest` or `docker_registry_image` with the `name` attribute for this, as shown in the examples.",
-										Required:    true,
+										Type:             schema.TypeString,
+										Description:      "The image name to use for the containers of the service, like `nginx:1.17.6`. Also use the data-source or resource of `docker_image` with the `repo_digest` or `docker_registry_image` with the `name` attribute for this, as shown in the examples.",
+										Required:         true,
+										DiffSuppressFunc: suppressIfOnlyShaOrLatestHasBeenAddedOnCluster(),
 									},
 									"labels": {
 										Type:        schema.TypeSet,
@@ -1013,5 +1016,32 @@ func resourceDockerService() *schema.Resource {
 				Upgrade: resourceDockerServiceStateUpgradeV2,
 			},
 		},
+	}
+}
+
+func suppressIfOnlyShaOrLatestHasBeenAddedOnCluster() schema.SchemaDiffSuppressFunc {
+	return func(k, old, new string, d *schema.ResourceData) bool {
+		oldParts := strings.Split(old, "@")
+		newParts := strings.Split(new, "@")
+
+		if len(oldParts) == 2 && len(newParts) == 1 {
+			log.Printf("Got sha from cluster '%s'. Ignoring it: %s == %s: %s", oldParts[1], oldParts[0], newParts[0], oldParts[0] == newParts[0])
+			old = oldParts[0]
+			new = newParts[0]
+		}
+
+		oldParts = strings.Split(old, ":")
+		newParts = strings.Split(new, ":")
+		if len(oldParts) == len(newParts)+1 {
+			log.Printf("Cluster seems to have added a tag when we didn't provide one.")
+			addedTag := oldParts[len(oldParts)-1]
+			if addedTag == "latest" {
+				log.Printf("Cluster added the latest tag. Ignoring this change, if nothing else changed.")
+				return strings.Join(oldParts[:len(oldParts)-1], ":") == strings.Join(newParts, ":")
+			}
+			log.Printf("The added tag was not 'latest' but instead '%s'. This looks like an actual change, so not ignoring it.", addedTag)
+		}
+
+		return old == new
 	}
 }

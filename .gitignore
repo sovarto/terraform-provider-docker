@@ -44,3 +44,4 @@ dist
 
 # lint error outputs
 markdown-link-check-*.txt
+terraform-provider-docker
