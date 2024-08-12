@@ -47,11 +47,11 @@ func resourceDockerVolume() *schema.Resource {
 				Elem:        labelSchema,
 			},
 			"driver": {
-				Type:        schema.TypeString,
-				Description: "Driver type for the volume. Defaults to `local`.",
-				Optional:    true,
-				Computed:    true,
-				ForceNew:    true,
+				Type:             schema.TypeString,
+				Description:      "Driver type for the volume. Defaults to `local`.",
+				Optional:         true,
+				Computed:         true,
+				ForceNew:         true,
 				DiffSuppressFunc: suppressIfOnlyLatestHasBeenAddedToDriver(),
 			},
 			"driver_opts": {
@@ -110,22 +110,22 @@ func resourceDockerVolumeCreate(ctx context.Context, d *schema.ResourceData, met
 }
 
 func resourceDockerVolumeRead(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	client := meta.(*ProviderConfig).DockerClient
+	log.Printf("[INFO] Waiting for volume: '%s' to expose all fields: max '%v seconds'", d.Id(), networkReadRefreshTimeout)
 
-	volume, err := client.VolumeInspect(ctx, d.Id())
-
-	if err != nil {
-		return diag.Errorf("Unable to inspect volume: %s", err)
+	stateConf := &resource.StateChangeConf{
+		Pending:    []string{"pending"},
+		Target:     []string{"all_fields", "removed"},
+		Refresh:    resourceDockerVolumeReadRefreshFunc(ctx, d, meta),
+		Timeout:    volumeReadRefreshTimeout,
+		MinTimeout: volumeReadRefreshWaitBeforeRefreshes,
+		Delay:      volumeReadRefreshDelay,
 	}
 
-	jsonObj, _ := json.MarshalIndent(volume, "", "\t")
-	log.Printf("[DEBUG] Docker volume inspect from readFunc: %s", jsonObj)
-
-	d.Set("name", volume.Name)
-	d.Set("labels", mapToLabelSet(volume.Labels))
-	d.Set("driver", volume.Driver)
-	d.Set("driver_opts", volume.Options)
-	d.Set("mountpoint", volume.Mountpoint)
+	// Wait, catching any errors
+	_, err := stateConf.WaitForStateContext(ctx)
+	if err != nil {
+		return diag.FromErr(err)
+	}
 
 	return nil
 }
@@ -152,6 +152,33 @@ func resourceDockerVolumeDelete(ctx context.Context, d *schema.ResourceData, met
 	return nil
 }
 
+func resourceDockerVolumeReadRefreshFunc(ctx context.Context,
+	d *schema.ResourceData, meta interface{}) resource.StateRefreshFunc {
+	return func() (interface{}, string, error) {
+		client := meta.(*ProviderConfig).DockerClient
+		volumeID := d.Id()
+
+		retVolume, _, err := client.VolumeInspectWithRaw(ctx, volumeID)
+		if err != nil {
+			log.Printf("[WARN] Volume (%s) not found, removing from state", volumeID)
+			d.SetId("")
+			return volumeID, "removed", nil
+		}
+
+		jsonObj, _ := json.MarshalIndent(retVolume, "", "\t")
+		log.Printf("[DEBUG] Docker volume inspect from readFunc: %s", jsonObj)
+
+		d.Set("name", retVolume.Name)
+		d.Set("labels", mapToLabelSet(retVolume.Labels))
+		d.Set("driver", retVolume.Driver)
+		d.Set("driver_opts", retVolume.Options)
+		d.Set("mountpoint", retVolume.Mountpoint)
+
+		log.Println("[DEBUG] all volume fields exposed")
+		return volumeID, "all_fields", nil
+	}
+}
+
 func resourceDockerVolumeRemoveRefreshFunc(
 	volumeID string, meta interface{}) resource.StateRefreshFunc {
 	return func() (interface{}, string, error) {
@@ -175,7 +202,7 @@ func suppressIfOnlyLatestHasBeenAddedToDriver() schema.SchemaDiffSuppressFunc {
 	return func(k, old, new string, d *schema.ResourceData) bool {
 		oldParts := strings.Split(old, ":")
 		newParts := strings.Split(new, ":")
-		if len(oldParts) == len(newParts) + 1 {
+		if len(oldParts) == len(newParts)+1 {
 			log.Printf("Cluster seems to have added a tag when we didn't provide one.")
 			addedTag := oldParts[len(oldParts)-1]
 			if addedTag == "latest" {
