@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	"strings"
 	"time"
 
 	"github.com/docker/docker/api/types"
@@ -51,6 +52,7 @@ func resourceDockerVolume() *schema.Resource {
 				Optional:    true,
 				Computed:    true,
 				ForceNew:    true,
+				DiffSuppressFunc: suppressIfOnlyLatestHasBeenAddedToDriver(),
 			},
 			"driver_opts": {
 				Type:        schema.TypeMap,
@@ -166,5 +168,23 @@ func resourceDockerVolumeRemoveRefreshFunc(
 		}
 		log.Printf("[INFO] Removing volume with id '%v' got removed", volumeID)
 		return volumeID, "removed", nil
+	}
+}
+
+func suppressIfOnlyLatestHasBeenAddedToDriver() schema.SchemaDiffSuppressFunc {
+	return func(k, old, new string, d *schema.ResourceData) bool {
+		oldParts := strings.Split(old, ":")
+		newParts := strings.Split(new, ":")
+		if len(oldParts) == len(newParts) + 1 {
+			log.Printf("Cluster seems to have added a tag when we didn't provide one.")
+			addedTag := oldParts[len(oldParts)-1]
+			if addedTag == "latest" {
+				log.Printf("Cluster added the latest tag. Ignoring this change, if nothing else changed.")
+				return strings.Join(oldParts[:len(oldParts)-1], ":") == strings.Join(newParts, ":")
+			}
+			log.Printf("The added tag was not 'latest' but instead '%s'. This looks like an actual change, so not ignoring it.", addedTag)
+		}
+
+		return old == new
 	}
 }
