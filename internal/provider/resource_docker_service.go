@@ -27,7 +27,7 @@ var serviceLabelSchema = &schema.Resource{
 // https://docs.docker.com/engine/api/v1.32/#operation/ServiceCreate
 func resourceDockerService() *schema.Resource {
 	return &schema.Resource{
-		Description: "This resource manages the lifecycle of a Docker service. By default, the creation, update and delete of services are detached.\n With the [Converge Config](#convergeconfig) the behavior of the `docker cli` is imitated to guarantee tha for example, all tasks of a service are running or successfully updated or to inform `terraform` that a service could no be updated and was successfully rolled back.",
+		Description: "This resource manages the lifecycle of a Docker service. By default, the creation, update and delete of services are detached.\n With the [Converge Config](#convergeconfig) the behavior of the `docker cli` is imitated to guarantee that for example, all tasks of a service are running or successfully updated or to inform `terraform` that a service could no be updated and was successfully rolled back.",
 
 		CreateContext: resourceDockerServiceCreate,
 		ReadContext:   resourceDockerServiceRead,
@@ -150,7 +150,7 @@ func resourceDockerService() *schema.Resource {
 									},
 									"capabilities": {
 										Type:        schema.TypeSet,
-										Description: "Add or drop certrain linux capabilities.",
+										Description: "Add or drop certain linux capabilities.",
 										Optional:    true,
 										ForceNew:    true,
 										MaxItems:    1,

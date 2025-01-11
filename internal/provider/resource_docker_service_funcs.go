@@ -185,7 +185,7 @@ func resourceDockerServiceUpdate(ctx context.Context, d *schema.ResourceData, me
 		return diag.FromErr(err)
 	}
 	if len(updateResponse.Warnings) > 0 {
-		log.Printf("[INFO] Warninig while updating Service '%s': %v", service.ID, updateResponse.Warnings)
+		log.Printf("[INFO] Warning while updating Service '%s': %v", service.ID, updateResponse.Warnings)
 	}
 
 	if v, ok := d.GetOk("converge_config"); ok {
