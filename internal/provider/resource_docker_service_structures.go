@@ -220,7 +220,7 @@ func flattenPrivileges(in *swarm.Privileges) []interface{} {
 	return out
 }
 
-func flattenServiceMounts(in []mount.Mount) *schema.Set {
+func flattenServiceMounts(in []mount.Mount) []interface{} {
 	out := make([]interface{}, len(in))
 	for i, v := range in {
 		m := make(map[string]interface{})
@@ -270,11 +270,8 @@ func flattenServiceMounts(in []mount.Mount) *schema.Set {
 
 		out[i] = m
 	}
-	taskSpecResource := resourceDockerService().Schema["task_spec"].Elem.(*schema.Resource)
-	containerSpecResource := taskSpecResource.Schema["container_spec"].Elem.(*schema.Resource)
-	mountsResource := containerSpecResource.Schema["mounts"].Elem.(*schema.Resource)
-	f := schema.HashResource(mountsResource)
-	return schema.NewSet(f, out)
+
+	return out
 }
 
 func flattenServiceHealthcheck(in *container.HealthConfig) []interface{} {
