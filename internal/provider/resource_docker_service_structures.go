@@ -854,7 +854,11 @@ func createContainerSpec(v interface{}) (*swarm.ContainerSpec, error) {
 						}
 					}
 
-					mounts = append(mounts, mountInstance)
+					if mountInstance.Target != "" {
+						mounts = append(mounts, mountInstance)
+					} else {
+						log.Printf("[WARN] Got invalid mount without target! Discarding...")
+					}
 				}
 
 				containerSpec.Mounts = mounts
