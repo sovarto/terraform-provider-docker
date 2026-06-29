@@ -14,6 +14,7 @@ import (
 
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
+	"github.com/docker/docker/api/types/registry"
 	"github.com/docker/go-units"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
@@ -68,7 +69,7 @@ func TestAccDockerRegistryImageResource_mapping(t *testing.T) {
 				// DevSkim: ignore DS137138
 				assert(*options.BuildArgs["HTTP_PROXY"] == "http://10.20.30.2:1234", "BuildArgs")
 				assert(len(options.AuthConfigs) == 1, "AuthConfigs")
-				assert(reflect.DeepEqual(options.AuthConfigs["foo.host"], types.AuthConfig{
+				assert(reflect.DeepEqual(options.AuthConfigs["foo.host"], registry.AuthConfig{
 					Username:      "fooUserName",
 					Password:      "fooPassword",
 					Auth:          "fooAuth",

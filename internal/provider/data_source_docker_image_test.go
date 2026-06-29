@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/filters"
+	imagetypes "github.com/docker/docker/api/types/image"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 )
@@ -180,7 +180,7 @@ func removeImageForTest(ctx context.Context, s *terraform.State, imageName strin
 
 	filters := filters.NewArgs()
 	filters.Add("reference", imageName)
-	images, err := client.ImageList(ctx, types.ImageListOptions{
+	images, err := client.ImageList(ctx, imagetypes.ListOptions{
 		Filters: filters,
 	})
 	if err != nil {
@@ -191,7 +191,7 @@ func removeImageForTest(ctx context.Context, s *terraform.State, imageName strin
 	}
 
 	for _, image := range images {
-		_, err := client.ImageRemove(ctx, image.ID, types.ImageRemoveOptions{
+		_, err := client.ImageRemove(ctx, image.ID, imagetypes.RemoveOptions{
 			Force: true,
 		})
 		if err != nil {

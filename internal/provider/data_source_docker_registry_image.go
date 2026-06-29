@@ -109,7 +109,7 @@ func getImageDigest(registry string, registryWithProtocol string, image, tag, us
 	// Either OAuth is required or the basic auth creds were invalid
 	case http.StatusUnauthorized:
 		if !strings.HasPrefix(resp.Header.Get("www-authenticate"), "Bearer") {
-			return "", fmt.Errorf("Bad credentials: " + resp.Status)
+			return "", fmt.Errorf("Bad credentials: %s", resp.Status)
 		}
 
 		token, err := getAuthToken(resp.Header.Get("www-authenticate"), username, password, client)
@@ -142,7 +142,7 @@ func getImageDigest(registry string, registryWithProtocol string, image, tag, us
 
 	// Some unexpected status was given, return an error
 	default:
-		return "", fmt.Errorf("Got bad response from registry: " + resp.Status)
+		return "", fmt.Errorf("Got bad response from registry: %s", resp.Status)
 	}
 }
 
@@ -202,7 +202,7 @@ func getAuthToken(authHeader string, username string, password string, client *h
 	}
 
 	if tokenResponse.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("Got bad response from registry: " + tokenResponse.Status)
+		return "", fmt.Errorf("Got bad response from registry: %s", tokenResponse.Status)
 	}
 
 	body, err := ioutil.ReadAll(tokenResponse.Body)
@@ -234,7 +234,7 @@ func doDigestRequest(req *http.Request, client *http.Client) (*http.Response, er
 	}
 
 	if digestResponse.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("Got bad response from registry: " + digestResponse.Status)
+		return nil, fmt.Errorf("Got bad response from registry: %s", digestResponse.Status)
 	}
 
 	return digestResponse, nil

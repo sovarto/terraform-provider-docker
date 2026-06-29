@@ -1,9 +1,10 @@
 package provider
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"log"
 	"strings"
+
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
 var serviceLabelSchema = &schema.Resource{
@@ -1025,7 +1026,7 @@ func suppressIfOnlyShaOrLatestHasBeenAddedOnCluster() schema.SchemaDiffSuppressF
 		newParts := strings.Split(new, "@")
 
 		if len(oldParts) == 2 && len(newParts) == 1 {
-			log.Printf("Got sha from cluster '%s'. Ignoring it: %s == %s: %s", oldParts[1], oldParts[0], newParts[0], oldParts[0] == newParts[0])
+			log.Printf("Got sha from cluster '%s'. Ignoring it: %s == %s: %t", oldParts[1], oldParts[0], newParts[0], oldParts[0] == newParts[0])
 			old = oldParts[0]
 			new = newParts[0]
 		}

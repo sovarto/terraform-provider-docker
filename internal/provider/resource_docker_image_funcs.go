@@ -15,6 +15,8 @@ import (
 
 	"github.com/docker/cli/cli/command/image/build"
 	"github.com/docker/docker/api/types"
+	imagetypes "github.com/docker/docker/api/types/image"
+	"github.com/docker/docker/api/types/registry"
 	"github.com/docker/docker/api/types/versions"
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/errdefs"
@@ -108,7 +110,7 @@ func resourceDockerImageDelete(ctx context.Context, d *schema.ResourceData, meta
 }
 
 // Helpers
-func searchLocalImages(ctx context.Context, client *client.Client, data Data, imageName string) (*types.ImageSummary, error) {
+func searchLocalImages(ctx context.Context, client *client.Client, data Data, imageName string) (*imagetypes.Summary, error) {
 	imageInspect, _, err := client.ImageInspectWithRaw(ctx, imageName)
 	if err != nil {
 		if errdefs.IsNotFound(err) {
@@ -152,7 +154,7 @@ func removeImage(ctx context.Context, d *schema.ResourceData, client *client.Cli
 	}
 
 	if foundImage != nil {
-		imageDeleteResponseItems, err := client.ImageRemove(ctx, imageName, types.ImageRemoveOptions{
+		imageDeleteResponseItems, err := client.ImageRemove(ctx, imageName, imagetypes.RemoveOptions{
 			Force: d.Get("force_remove").(bool),
 		})
 		if err != nil {
@@ -166,13 +168,13 @@ func removeImage(ctx context.Context, d *schema.ResourceData, client *client.Cli
 }
 
 func fetchLocalImages(ctx context.Context, data *Data, client *client.Client) error {
-	images, err := client.ImageList(ctx, types.ImageListOptions{All: false})
+	images, err := client.ImageList(ctx, imagetypes.ListOptions{All: false})
 	if err != nil {
 		return fmt.Errorf("unable to list Docker images: %w", err)
 	}
 
 	if data.DockerImages == nil {
-		data.DockerImages = make(map[string]*types.ImageSummary)
+		data.DockerImages = make(map[string]*imagetypes.Summary)
 	}
 
 	// Docker uses different nomenclatures in different places...sometimes a short
@@ -195,7 +197,7 @@ func fetchLocalImages(ctx context.Context, data *Data, client *client.Client) er
 func pullImage(ctx context.Context, data *Data, client *client.Client, authConfig *AuthConfigs, image string, platform string) error {
 	pullOpts := parseImageOptions(image)
 
-	auth := types.AuthConfig{}
+	auth := registry.AuthConfig{}
 	if authConfig, ok := authConfig.Configs[pullOpts.Registry]; ok {
 		auth = authConfig
 	}
@@ -205,7 +207,7 @@ func pullImage(ctx context.Context, data *Data, client *client.Client, authConfi
 		return fmt.Errorf("error creating auth config: %w", err)
 	}
 
-	out, err := client.ImagePull(ctx, image, types.ImagePullOptions{
+	out, err := client.ImagePull(ctx, image, imagetypes.PullOptions{
 		RegistryAuth: base64.URLEncoding.EncodeToString(encodedJSON),
 		Platform:     platform,
 	})
@@ -280,7 +282,7 @@ func parseImageOptions(image string) internalPullImageOptions {
 	return pullOpts
 }
 
-func findImage(ctx context.Context, imageName string, client *client.Client, authConfig *AuthConfigs, platform string) (*types.ImageSummary, error) {
+func findImage(ctx context.Context, imageName string, client *client.Client, authConfig *AuthConfigs, platform string) (*imagetypes.Summary, error) {
 	if imageName == "" {
 		return nil, fmt.Errorf("empty image name is not allowed")
 	}
